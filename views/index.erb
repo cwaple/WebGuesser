@@ -1,6 +1,11 @@
 <html>
     <head>
         <title>Web Guesser</title>
+        <style>
+            body {
+                background: <%= background_color %>;
+            }
+        </style>
     </head>
     <body>
         <form>
@@ -8,6 +13,6 @@
             <input type='submit' value='Guess!'>
         </form>
         <p><%= message %></p>
-        <p>The secret number is <%= number %></p>        
+        <p><%= number_message %></p>        
     <body>
 </html>
