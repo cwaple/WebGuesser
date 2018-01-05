@@ -10,7 +10,11 @@ get '/' do
     @@guesses = 5
     number_message = "Sorry you lost, the secret number was #{SECRET_NUMBER}.\n Guess new Secret Number!"
     SECRET_NUMBER = rand(100)
-  end  
+  end
+  cheat_message = ""  
+  if params["cheat"] == "true"
+    cheat_message = "The secret number is #{SECRET_NUMBER}"
+  end
   guess = params["guess"].to_i
   message = check_guess(guess)
   background_color = get_background_color(message)
@@ -20,7 +24,8 @@ get '/' do
   else 
     @@guesses -= 1
   end
-  erb :index, :locals => {:number_message => number_message, :message => message, :background_color => background_color}
+  erb :index, :locals => {:number_message => number_message, :message => message, 
+                          :background_color => background_color, :cheat_message => cheat_message}
 end
 
 def check_guess(guess)
